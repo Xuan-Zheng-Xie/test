@@ -36,6 +36,6 @@ jobs:
         with:
           host: 192.168.122.253
           username: root
-          password: ''
+          password: 'eric'
           port: 22
           script: whoami
