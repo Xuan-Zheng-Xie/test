@@ -33,5 +33,6 @@ jobs:
           virt-manager --connect qemu:///system --show-domain-console debian11-x64
       - name: Connect via ssh
         run: |
+          sleep 3
           ssh -o StrictHostKeyChecking=no root@192.168.122.253
           whoami
