@@ -32,10 +32,6 @@ jobs:
           virsh --connect qemu:///system start debian11-x64
           virt-manager --connect qemu:///system --show-domain-console debian11-x64
       - name: Connect via ssh
-        uses: appleboy/ssh-action@v0.1.10
-        with:
-          host: 192.168.122.253
-          username: root
-          password: 'eric'
-          port: 0
-          script: whoami
+        run: |
+          ssh -o StrictHostKeyChecking=no root@192.168.122.253
+          whoami
