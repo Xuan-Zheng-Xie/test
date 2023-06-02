@@ -45,7 +45,7 @@ jobs:
           END
         env:
           SSH_USER: root
-          SSH_KEY: ${{ secrets.PRIVATE_KEY }}
+          SSH_KEY: ${{ secrets.PUBLIC_KEY }}
           SSH_HOST: ${{ secrets.HOST }}
 
       - name: Stop the server
