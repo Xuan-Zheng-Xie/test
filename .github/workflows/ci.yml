@@ -32,8 +32,21 @@ jobs:
           virsh --connect qemu:///system start debian11-x64
           virt-manager --connect qemu:///system --show-domain-console debian11-x64
       - name: Connect via ssh
-        uses: garygrossgarten/github-action-ssh@release
-        with:
-          command: whoami
-          host: ${{ secrets.HOST }}
-          username: eric
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/staging.key
+          chmod 600 ~/.ssh/staging.key
+          cat >>~/.ssh/config <<END
+          Host staging
+            HostName $SSH_HOST
+            User $SSH_USER
+            IdentityFile ~/.ssh/staging.key
+            StrictHostKeyChecking no
+          END
+        env:
+          SSH_USER: ${{ secrets.STAGING_SSH_USER }}
+          SSH_HOST: ${{ secrets.STAGING_SSH_HOST }}
+
+      - name: Stop the server
+        run: ssh staging 'whoami'
+
