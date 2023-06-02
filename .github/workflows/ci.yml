@@ -32,15 +32,7 @@ jobs:
           virsh --connect qemu:///system start debian11-x64
           virt-manager --connect qemu:///system --show-domain-console debian11-x64
       - name: Connect via ssh
-        run: |
-          Host staging
-            HostName $SSH_HOST
-            User $SSH_USER
-            StrictHostKeyChecking no
-          END
-        env:
-          SSH_USER: root
-          SSH_HOST: 192.168.122.253
+        run: ssh root@192.168.122.253
       - name: Test
         run: whoami
         
