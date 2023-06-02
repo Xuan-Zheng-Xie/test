@@ -44,8 +44,8 @@ jobs:
             StrictHostKeyChecking no
           END
         env:
-          SSH_USER: ${{ secrets.STAGING_SSH_USER }}
-          SSH_HOST: ${{ secrets.STAGING_SSH_HOST }}
+          SSH_USER: root
+          SSH_HOST: ${{ secrets.HOST }}
 
       - name: Stop the server
         run: ssh staging 'whoami'
