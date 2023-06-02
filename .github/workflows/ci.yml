@@ -29,6 +29,5 @@ jobs:
       # Runs a single command using the runners shell
       - name: Boot debian11-x64
         run: |
-          virsh --connect qemu:///system start debian11-x64
-          virt-manager --connect qemu:///system --show-domain-console debian11-x64
+          
           bash /home/eric/Desktop/connect.sh
