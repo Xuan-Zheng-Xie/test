@@ -32,7 +32,21 @@ jobs:
           virsh --connect qemu:///system start debian11-x64
           virt-manager --connect qemu:///system --show-domain-console debian11-x64
       - name: Connect via ssh
-        run: ssh root@192.168.122.253
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/staging.key
+          chmod 600 ~/.ssh/staging.key
+          cat >>~/.ssh/config <<END
+          Host staging
+            HostName $SSH_HOST
+            User $SSH_USER
+            IdentityFile ~/.ssh/staging.key
+            StrictHostKeyChecking no
+          END
+        env:
+          SSH_USER: root
+          SSH_KEY: AAAAB3NzaC1yc2EAAAADAQABAAABgQDkGEm30W5j/nvdv4eREepjsiImMHa6XcH4/p2h/nY4CsnocLc4SKEt1woSjwBUF+8KA2YDtE3wrEI+ZgycCaYWj/OZh1AQ8HhIUaUFgTlMqd82JMxZCeWcQgJIUSq83KTnKKwD6amLQuRethwR+rWU95A7By1c+mnjLznmm3oG8UsMB8TTyQBhoqoWdtaCC/TQ0QiGjpoantMNf1XDTUXjn4axTwtyok6lJoXpOWpx18xbZUQnqew1lKpNmByA4QFnlpkVpqJD2H7j1U8Qu110nCVDicbAYY/UxvdlFJyifp+tvEFQi1IEUo9VBAOCPuF/IMMtQPO0XCDI2g1BlqVuhUpg2vC5YU56KOIoX87zeT3ht081jA/CKSF0uFWX50RCiblnngdUZmr2z0IRg+wMRUPJ6Udtp7+r7Zy/PevROrXNHGBRHuHbFSb+ozxY3+5CX3ln1QJvwfl2P5y1YUhInuPKhtdlaw0PnOrGWFhMkV8Z5qK1rGHoX/8vH6xtCkc=
+          SSH_HOST: 192.168.122.253
       - name: Test
         run: whoami
         
