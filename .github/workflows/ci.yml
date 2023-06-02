@@ -31,22 +31,4 @@ jobs:
         run: |
           virsh --connect qemu:///system start debian11-x64
           virt-manager --connect qemu:///system --show-domain-console debian11-x64
-          sleep 3
-          mkdir -p ~/.ssh/
-          echo "$SSH_KEY" > ~/.ssh/staging.key
-          chmod 600 ~/.ssh/staging.key
-          cat >>~/.ssh/config <<END
-          Host staging
-            HostName $SSH_HOST
-            User $SSH_USER
-            IdentityFile ~/.ssh/staging.key
-            StrictHostKeyChecking no
-          END
-        env:
-          SSH_USER: root
-          SSH_KEY: ${{ secrets.PUBLIC_KEY }}
-          SSH_HOST: ${{ secrets.HOST }}
-
-      - name: Stop the server
-        run: ssh staging 'whoami'
-
+          pwd
