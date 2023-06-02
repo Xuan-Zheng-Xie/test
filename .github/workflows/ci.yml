@@ -32,7 +32,7 @@ jobs:
           virsh --connect qemu:///system start debian11-x64
           virt-manager --connect qemu:///system --show-domain-console debian11-x64
       - name: Connect via ssh
-        uses: grayrossgarten/gthub-action-ssh@release
+        uses: garygrossgarten/gthub-action-ssh@release
         with:
           command: whoami
           host: 192.168.122.253
