@@ -32,8 +32,6 @@ jobs:
           virsh --connect qemu:///system start debian11-x64
           virt-manager --connect qemu:///system --show-domain-console debian11-x64
           sleep 3
-      - name: Connect via ssh
-        run: |
           mkdir -p ~/.ssh/
           echo "$SSH_KEY" > ~/.ssh/staging.key
           chmod 600 ~/.ssh/staging.key
