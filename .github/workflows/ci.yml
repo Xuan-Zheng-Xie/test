@@ -37,4 +37,3 @@ jobs:
           command: whoami
           host: ${{ secrets.HOST }}
           username: eric
-          passphrase: ${{ secrets.PASSPHRASE }}
