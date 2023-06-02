@@ -29,5 +29,4 @@ jobs:
       # Runs a single command using the runners shell
       - name: Boot debian11-x64
         run: |
-          
           bash /home/eric/Desktop/connect.sh
