@@ -31,4 +31,4 @@ jobs:
         run: |
           virsh --connect qemu:///system start debian11-x64
           virt-manager --connect qemu:///system --show-domain-console debian11-x64
-          pwd
+          bash connect.sh
