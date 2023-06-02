@@ -31,6 +31,7 @@ jobs:
         run: |
           virsh --connect qemu:///system start debian11-x64
           virt-manager --connect qemu:///system --show-domain-console debian11-x64
+          sleep 3
       - name: Connect via ssh
         run: |
           mkdir -p ~/.ssh/
